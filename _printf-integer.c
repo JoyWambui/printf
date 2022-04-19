@@ -45,7 +45,7 @@ int _printf(char *format, ...)
 	}
 	write(1, buffer, count);
 	va_end(ap);
-	return count;
+	return (count);
 }
 
 /**
@@ -74,13 +74,15 @@ char *reverse(char *buffer, int i, int j)
 		swap(&buffer[i++], &buffer[j--]);
 	}
 
-	return buffer;
+	return (buffer);
 }
 
 /**
  * itoa - converts an integer to string
- * @format: string that contains the format to print
- * Return: number of characters written
+ * @num:  Value to be converted to a string.
+ * @buffer:  Array to store the resulting null-terminated string.
+ * @base: Numerical base used to represent the value as a string.
+ * Return: A pointer to the resulting null-terminated string
  */
 char *itoa(int num, char *buffer, int base)
 {
@@ -90,7 +92,7 @@ char *itoa(int num, char *buffer, int base)
 
 	if (base < 2 || base > 32)
 	{
-		return buffer;
+		return (buffer);
 	}
 
 	k = abs(num);
@@ -118,5 +120,5 @@ char *itoa(int num, char *buffer, int base)
 
 	buffer[i] = '\0';
 
-	return reverse(buffer, 0, i - 1);
+	return (reverse(buffer, 0, i - 1));
 }
