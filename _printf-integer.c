@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 /**
  * _printf - prints formatted data to stdout
  * @format: string that contains the format to print
@@ -14,6 +15,7 @@ int _printf(char *format, ...)
 	va_list ap;
 	int count = 0;
 	int i = 0;
+	char *string;
 
 	va_start(ap, format);
 	while (format && format[i])
@@ -23,6 +25,10 @@ int _printf(char *format, ...)
 			i++;
 			switch (format[i])
 			{
+			case 'c':
+				buffer[count] = (char)va_arg(ap, int);
+				count++;
+				break;
 			case 'd':
 				itoa(va_arg(ap, int), temp, 10);
 				strcpy(&buffer[count], temp);
@@ -33,6 +39,16 @@ int _printf(char *format, ...)
 				itoa(va_arg(ap, int), temp, 10);
 				strcpy(&buffer[count], temp);
 				count += strlen(temp);
+				break;
+
+			case 's':
+				string = va_arg(ap, char *);
+				strcpy(&buffer[count], string);
+				count += strlen(string);
+				break;
+			case '%':
+				buffer[count] = putchar('%');
+				count++;
 				break;
 			}
 		}
