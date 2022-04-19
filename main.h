@@ -20,5 +20,9 @@ typedef struct structprint
 
 int _putchar(char ch);
 int (*driver(char *format))(char *format, va_list);
+int _printf(char *format, ...);
+char *itoa(int num, char *buffer, int base);
+char *reverse(char *buffer, int i, int j);
+void swap(char *x, char *y);
 
 #endif
