@@ -17,6 +17,11 @@ int _printf(char *format, ...)
 	int i = 0;
 	char *string;
 
+	if (format == NULL)
+	{
+		return (-1);
+	}
+
 	va_start(ap, format);
 	while (format && format[i])
 	{
@@ -34,7 +39,6 @@ int _printf(char *format, ...)
 				strcpy(&buffer[count], temp);
 				count += strlen(temp);
 				break;
-				break;
 			case 'i':
 				itoa(va_arg(ap, int), temp, 10);
 				strcpy(&buffer[count], temp);
@@ -47,7 +51,7 @@ int _printf(char *format, ...)
 				count += strlen(string);
 				break;
 			case '%':
-				buffer[count] = putchar('%');
+				buffer[count] = '%';
 				count++;
 				break;
 			}
@@ -138,3 +142,19 @@ char *itoa(int num, char *buffer, int base)
 
 	return (reverse(buffer, 0, i - 1));
 }
+
+/**char *convert(unsigned int num, int base)
+{
+       static char Represantaion[] = "0123456789ABCDEF";
+       static char buffer[50];
+       char *ptr;
+
+       ptr = &buffer[49];
+       *ptr = '\0';
+       do
+       {
+	       *--ptr = Represantaion[num % base];
+	       num /= base;
+       } while (num != 0);
+       return (ptr);
+}*/
